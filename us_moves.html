@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Moving between counties in USA</title>
+	<link rel="stylesheet" href="css/us_moves.css"/>
+	<!-- script type="text/javascript" src="js/jquery-2.1.1.min.js"></script -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<!-- script type="text/javascript" src="js/d3.v3.js"></script -->
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/us_counties.js"></script>
+	<script type='text/javascript' src='https://public.tableausoftware.com/javascripts/api/viz_v1.js'></script>
+<head>
+
+<body>
+
+<header>
+	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="900px" height="500px" viewBox="0 0 180 100">
+		<filter id="movesblur"> <feGaussianBlur stdDeviation="0.0"/></filter>
+		<image x="0" y="0" width="180" height="100" preserveAspectRatio="none" xlink:href="images/usmap.gif" filter="url(#movesblur)"/>
+
+		<text x="15" y="54" font-family="ariel" font-size="18" font-weight="bold" fill="#CD214F">Moving in US</text>
+		<path stroke="gold" stroke-width="5" fill="none" stroke-linecap="round"
+			"d M 30 80 A80 30 0 0 1 250 100 Z"/>
+		</path>
+
+		<!-- defs> <path id="movescurve" d="M 10 90 C 90 40 160 90 Z" /> </defs>
+
+		<text font-family="arial" font-size="16" fill="gold" stroke="gold" stroke-width="5">
+			<textPath xlink:href="#movescurve">US Moves</textPath>
+		</text -->
+	</svg>
+
+	<p>
+		Standard of living: A grade or level of subsistence and comfort in everyday life enjoyed by a
+		community, class, or individual.  <br/> <span> - dictionary.com </span>
+		<br/> <br/>
+		Here we let you compare the living standards of counties across USA based on data collected from
+		a variety of sources.
+	</p>
+
+</header>
+
+<div id="county-county" class="yellow-pane">
+<button class="show-hide">+</button><button class="show-hide">-</button>
+<span class="pane-title">County Vs. County</span>
+<div class="data-pane">
+    <table>
+        <tbody>
+            <tr>
+                <td> <label> State: </label></td><td> <select name='state1' class="state-select"></select> </td>
+                <td> <label> County: </label></td><td> <select name='county1' class="county-select"></select> </td>
+				<td> <button class="county1-color" /> </td>
+            </tr>
+            <tr> <td/> <td/> <td>VIS-A-VIS</td> <td/> <td/> </tr>
+            <tr>
+                <td> <label> State: </label></td><td> <select name='state2' class="state-select"></select> </td>
+                <td> <label> County: </label></td><td> <select name='county2' class="county-select"></select> </td>
+				<td> <button class="county2-color" /> </td>
+            </tr>
+            <tr>
+            </tr>
+        </tbody>
+    </table>
+	<div id="svg-panel">
+	<!-- svg id="svg-panel" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960px" height="720px" viewBox="0 0 980 720">
+	</svg -->
+	</div>
+</div>
+</div>
+
+<div id="historical-unemployment" class="green-pane">
+<button class="show-hide">+</button><button class="show-hide">-</button>
+<span class="pane-title">Historical Unemployment</span>
+<div class="data-pane">
+
+<div class='tableauPlaceholder' style='width: 1004px; height: 869px;'>
+	<noscript>
+		<a href='#'>
+		<img alt='Unemployment Rate ' src='https:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;Un&#47;UnemploymentRate_4&#47;UnemploymentRate&#47;1_rss.png' style='border: none' />
+		</a>
+	</noscript>
+	<object class='tableauViz' width='1004' height='869' style='display:none;'>
+		<param name='host_url' value='https%3A%2F%2Fpublic.tableausoftware.com%2F' /> 
+		<param name='site_root' value='' />
+		<param name='name' value='UnemploymentRate_4&#47;UnemploymentRate' />
+		<param name='tabs' value='no' />
+		<param name='toolbar' value='yes' />
+		<param name='static_image' value='https:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;Un&#47;UnemploymentRate_4&#47;UnemploymentRate&#47;1.png' /> 
+		<param name='animate_transition' value='yes' />
+		<param name='display_static_image' value='yes' />
+		<param name='display_spinner' value='yes' />
+		<param name='display_overlay' value='yes' />
+		<param name='display_count' value='yes' />
+	</object>
+</div>
+<!-- div style='width:1004px;height:22px;padding:0px 10px 0px 0px;color:black;font:normal 8pt verdana,helvetica,arial,sans-serif;'>
+<div style='float:right; padding-right:8px;'>
+<a href='http://www.tableausoftware.com/public/about-tableau-products?ref=https://public.tableausoftware.com/views/UnemploymentRate_4/UnemploymentRate' target='_blank'>Learn About Tableau
+</a>
+</div>
+</div -->
+
+
+<!-- div class='tableauPlaceholder' style='width: 1004px; height: 1169px;'>
+	<noscript>
+		<a href='#'>
+			<img alt='Unemployment Rate ' src='https:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;Un&#47;UnemploymentRate_4&#47;UnemploymentRate&#47;1_rss.png' style='border: none' />
+		</a>
+	</noscript>
+	<object class='tableauViz' width='1004' height='1169' style='display:none;'>
+		<param name='host_url' value='https%3A%2F%2Fpublic.tableausoftware.com%2F' />
+		<param name='site_root' value='' />
+		<param name='name' value='UnemploymentRate_4&#47;UnemploymentRate' />
+		<param name='tabs' value='no' />
+		<param name='toolbar' value='yes' />
+		<param name='static_image' value='https:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;Un&#47;UnemploymentRate_4&#47;UnemploymentRate&#47;1.png' /> 
+		<param name='animate_transition' value='yes' />
+		<param name='display_static_image' value='yes' />
+		<param name='display_spinner' value='yes' />
+		<param name='display_overlay' value='yes' />
+		<param name='display_count' value='yes' />
+	</object>
+</div -->
+
+<!-- div style='width:1004px;height:22px;padding:0px 10px 0px 0px;color:black;font:normal 8pt verdana,helvetica,arial,sans-serif;'>
+<div style='float:right; padding-right:8px;'>
+<a href='http://www.tableausoftware.com/public/about-tableau-products?ref=https://public.tableausoftware.com/views/UnemploymentRate_4/UnemploymentRate' target='_blank'>Learn About Tableau</a>
+</div>
+</div -->
+
+</div>
+</div>
+
+<div id="median-home-price" class="yellow-pane">
+<button class="show-hide">+</button><button class="show-hide">-</button>
+<span class="pane-title">Median Home Price</span>
+<div class="data-pane">
+<!-- SPAN> Nital Patwa <SPAN -->
+
+<div class='tableauPlaceholder' style='width: 1004px; height: 869px;'>
+	<noscript>
+		<a href='#'>
+		<img alt='Median Home Prices ' src='https:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;qu&#47;quickfacts&#47;MedianHomePrices&#47;1_rss.png' style='border: none' />
+		</a>
+	</noscript>
+	<object class='tableauViz' width='1004' height='869' style='display:none;'>
+		<param name='host_url' value='https%3A%2F%2Fpublic.tableausoftware.com%2F' /> 
+		<param name='site_root' value='' />
+		<param name='name' value='quickfacts&#47;MedianHomePrices' />
+		<param name='tabs' value='no' />
+		<param name='toolbar' value='yes' />
+		<param name='static_image' value='https:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;qu&#47;quickfacts&#47;MedianHomePrices&#47;1.png' /> 
+		<param name='animate_transition' value='yes' />
+		<param name='display_static_image' value='yes' />
+		<param name='display_spinner' value='yes' />
+		<param name='display_overlay' value='yes' />
+		<param name='display_count' value='yes' />
+	</object>
+</div>
+<!-- div style='width:1004px;height:22px;padding:0px 10px 0px 0px;color:black;font:normal 8pt verdana,helvetica,arial,sans-serif;'>
+<div style='float:right; padding-right:8px;'>
+<a href='http://www.tableausoftware.com/public/about-tableau-products?ref=https://public.tableausoftware.com/views/quickfacts/MedianHomePrices' target='_blank'>Learn About Tableau
+</a>
+</div>
+</div -->
+
+
+
+
+
+<!-- div class='tableauPlaceholder' style='width: 1004px; height: 869px;'>
+	<noscript>
+	<a href='null'>
+		<img alt='Median Home Prices ' src='https:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;qu&#47;quickfacts&#47;MedianHomePrices&#47;1_rss.png' style='border: none' />
+	</a>
+	</noscript>
+	<object class='tableauViz' width='1004' height='869' style='display:none;'>
+		<param name='host_url' value='https%3A%2F%2Fpublic.tableausoftware.com%2F' /> 
+		<param name='site_root' value='' />
+		<param name='name' value='quickfacts&#47;MedianHomePrices' />
+		<param name='tabs' value='no' />
+		<param name='toolbar' value='yes' />
+		<param name='static_image' value='https:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;qu&#47;quickfacts&#47;MedianHomePrices&#47;1.png' /> 
+		<param name='animate_transition' value='yes' />
+		<param name='display_static_image' value='yes' />
+		<param name='display_spinner' value='yes' />
+		<param name='display_overlay' value='yes' />
+		<param name='display_count' value='yes' />
+	</object></div><div style='width:1004px;height:22px;padding:0px 10px 0px 0px;color:black;font:normal 8pt verdana,helvetica,arial,sans-serif;'>
+</div -->
+	<!-- div style='float:right; padding-right:8px;'>
+	<a href='http://www.tableausoftware.com/public/about-tableau-products?ref=https://public.tableausoftware.com/views/quickfacts/MedianHomePrices' target='_blank'>Learn About Tableau
+	</a>
+	</div -->
+
+</div>
+</div>
+
+<!-- div id="labor-force" class="yellow-pane">
+<button class="show-hide">+</button><button class="show-hide">-</button>
+<span class="pane-title">Labor Force</span>
+<div class="data-pane">
+	<p>
+		land area, land area, land area, land area, land area, land area, land area,
+		land area, land area, land area, land area, land area, land area, land area,
+		land area, land area, land area, land area, land area, land area, land area,
+		land area, land area, land area, land area, land area, land area, land area.
+		labor force, labor force, labor force, labor force, labor force, labor force,
+		labor force, labor force, labor force, labor force, labor force, labor force,
+		labor force, labor force, labor force, labor force, labor force, labor force,
+		labor force, labor force, labor force, labor force, labor force, labor force.
+		health-care, health-care, health-care, health-care, health-care, health-care, health-care, health-care, 
+		health-care, health-care, health-care, health-care, health-care, health-care, health-care, health-care, 
+		health-care, health-care, health-care, health-care, health-care, health-care, health-care, health-care, 
+		health-care, health-care, health-care, health-care, health-care, health-care, health-care, health-care, 
+		education-index, education-index, education-index, education-index, education-index, education-index, 
+		education-index, education-index, education-index, education-index, education-index, education-index, 
+		education-index, education-index, education-index, education-index, education-index, education-index, 
+		education-index, education-index, education-index, education-index, education-index, education-index, 
+	</p>
+</div>
+</div -->
+
+<div id="education" class="green-pane">
+<button class="show-hide">+</button><button class="show-hide">-</button>
+<span class="pane-title">Education Index</span>
+<div class="data-pane">
+<!-- SPAN> Tao Mao <SPAN -->
+	<div class='tableauPlaceholder' style='width: 1004px; height: 425px;'>
+		<noscript><a href='#'><img alt='Dashboard 1 ' src='http:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;Te&#47;Temp_Fires&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript>
+		<object class='tableauViz' width='1004' height='569' style='display:none;'>
+		<param name='host_url' value='http%3A%2F%2Fpublic.tableausoftware.com%2F' /> 
+		<param name='site_root' value='' />
+		<param name='name' value='EducationHealthIncome&#47;Income' />
+		<param name='tabs' value='no' />
+		<param name='toolbar' value='yes' />
+		<param name='static_image' value='http:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;Te&#47;Temp_Fires&#47;Dashboard1&#47;1.png' /> 
+		<param name='animate_transition' value='yes' />
+		<param name='display_static_image' value='yes' />
+		<param name='display_spinner' value='yes' />
+		<param name='display_overlay' value='yes' />
+		<param name='display_count' value='yes' />
+		<param name='filter' value='amp;:showVizHome=no' />
+		</object>
+	</div>
+</div>
+</div>
+
+<div id="median-income" class="yellow-pane">
+<button class="show-hide">+</button><button class="show-hide">-</button>
+<span class="pane-title">Median Income</span>
+<div class="data-pane">
+<!-- SPAN> Nital Patwa <SPAN -->
+
+<div class='tableauPlaceholder' style='width: 1004px; height: 869px;'>
+	<noscript>
+		<a href='#'>
+			<img alt='Median Household Income ' src='https:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;Li&#47;LifeinUnitedStates&#47;MedianHouseholdIncome&#47;1_rss.png' style='border: none' />
+		</a>
+	</noscript>
+	<object class='tableauViz' width='1004' height='869' style='display:none;'>
+		<param name='host_url' value='https%3A%2F%2Fpublic.tableausoftware.com%2F' /> 
+		<param name='site_root' value='' />
+		<param name='name' value='LifeinUnitedStates&#47;MedianHouseholdIncome' />
+		<param name='tabs' value='no' />
+		<param name='toolbar' value='yes' />
+		<param name='static_image' value='https:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;Li&#47;LifeinUnitedStates&#47;MedianHouseholdIncome&#47;1.png' /> 
+		<param name='animate_transition' value='yes' />
+		<param name='display_static_image' value='yes' />
+		<param name='display_spinner' value='yes' />
+		<param name='display_overlay' value='yes' />
+		<param name='display_count' value='yes' />
+	</object>
+</div>
+
+<!-- div style='width:1004px;height:22px;padding:0px 10px 0px 0px;color:black;font:normal 8pt verdana,helvetica,arial,sans-serif;'>
+<div style='float:right; padding-right:8px;'>
+<a href='http://www.tableausoftware.com/public/about-tableau-products?ref=https://public.tableausoftware.com/views/LifeinUnitedStates/MedianHouseholdIncome' target='_blank'>Learn About Tableau
+</a>
+</div>
+</div -->
+
+
+</div>
+</div>
+
+
+<div id="health-care" class="green-pane">
+<button class="show-hide">+</button><button class="show-hide">-</button>
+<span class="pane-title">Health Care</span>
+<div class="data-pane">
+<!-- SPAN> Daniel A Burley <SPAN -->
+
+<script type='text/javascript' src='https://public.tableausoftware.com/javascripts/api/viz_v1.js'></script>
+
+<div class='tableauPlaceholder' style='width: 1649px; height: 763px;'>
+	<noscript>
+		<a href='#'><img alt='Sheet 1 ' src='https:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;He&#47;HealthMap&#47;Sheet1&#47;1_rss.png' style='border: none' /></a>
+	</noscript>
+	<object class='tableauViz' width='1649' height='763' style='display:none;'>
+		<param name='host_url' value='https%3A%2F%2Fpublic.tableausoftware.com%2F' /> 
+		<param name='site_root' value='' />
+		<param name='name' value='HealthMap&#47;Sheet1' />
+		<param name='tabs' value='no' />
+		<param name='toolbar' value='yes' />
+		<param name='static_image' value='https:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;He&#47;HealthMap&#47;Sheet1&#47;1.png' /> 
+		<param name='animate_transition' value='yes' />
+		<param name='display_static_image' value='yes' />
+		<param name='display_spinner' value='yes' />
+		<param name='display_overlay' value='yes' />
+		<param name='display_count' value='yes' />
+		<param name='showVizHome' value='no' />
+	</object>
+
+</div>
+<!-- div style='width:1649px;height:22px;padding:0px 10px 0px 0px;color:black;font:normal 8pt verdana,helvetica,arial,sans-serif;'>
+	<div style='float:right; padding-right:8px;'>
+		<a href='http://www.tableausoftware.com/public/about-tableau-products?ref=https://public.tableausoftware.com/views/HealthMap/Sheet1' target='_blank'>Learn About Tableau </a>
+	</div>
+</div -->
+
+</div>
+</div>
+
+<footer>
+    <section id="footer-data-source">
+        Data Sources:
+        <ul>
+            <li> <a href="http://www.bls.gov"> Bureau of Labor Statistics (BLS) </a> </li>
+            <li> <a href="http://factfiner2.census.gov"> United States Census Bureau </a> </li>
+        </ul>
+    </section>
+    <section>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="190px" height="100px" viewBox="0 0 180 100">
+        <filter id="movesblur"> <feGaussianBlur stdDeviation="0.5"/></filter>
+        <image x="0" y="0" width="180" height="100" preserveAspectRatio="none" xlink:href="images/usmap.gif" filter="url(#movesblur)"/>
+        <text x="25" y="54" font-family="ariel" font-size="15" font-weight="bold" fill="#CD214F">Moving in US</text>
+    </svg>
+    </section>
+    <section id="footer-project">
+    A project in <span> Data visualization &amp; communication </span> by: 
+    <ul>
+        <li> Thiyagarajan (Thiyagu) Shanmuga </li>
+        <li> Nital Patwa </li>
+        <li> Tao Mao </li>
+        <li> Daniel Burley </li>
+    </ul>
+    <span>
+        For the <a href="http://datascience.berkeley.edu/" target="_blank">Master of Information and Data Science</a>
+        program offered by <a href="http://www.berkeley.edu/index.html" target="_blank">University of Berkeley</a>,
+		<a href="http://www.ischool.berkeley.edu/" target="_blank">School of Information</a>.
+    </span>
+    </section>
+    <br class="clear-both"/>
+</footer>
+
+</body>
+</html>

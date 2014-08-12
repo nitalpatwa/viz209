@@ -1,0 +1,249 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+header
+{
+	background-image: linear-gradient(to bottom, #0041BF 0%, #2061DF 100%);
+	color: #FFFFFF;
+	padding: 2em 5em 2em 5em;
+	height: 40em;
+}
+
+header p
+{
+	color: #FFFFFF;
+	padding: 2em 2em 2em 0;
+}
+
+header p span
+{
+	color: yellow;
+	padding: 2em;
+}
+
+footer
+{
+	background-image: linear-gradient(to bottom, #0041BF 0%, #2061DF 100%);
+	color: #FFFFFF;
+	padding: 2em;
+	height: 12em;
+}
+
+footer section
+{
+	width: 30%;
+	float: left;
+}
+
+footer span
+{
+	font-size: 90%;
+}
+
+footer #footer-data-source
+{
+	float: left;
+}
+
+footer #footer-project
+{
+	width: 36%;
+	float: right;
+}
+
+footer #footer-project us
+{
+	margin: 0;
+	padding: 0;
+}
+
+footer li
+{
+	list-style: none;
+	padding-left: 1em;
+}
+
+footer a
+{
+	text-decoration: none;
+	font-style: italic;
+	color: #FEE944;
+}
+
+footer a:hover
+{
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+
+.show-hide
+{
+	border-radius: 10px;
+	height: 30px;
+	width: 30px;
+	font-weight: bolder;
+	font-size: 120%;
+	border: 1px inset #2c2c2c;
+	margin: 10px 0 10px 20px;
+}
+
+.yellow-pane .show-hide
+{
+	background-color: #208267;
+	color: white;
+}
+
+.green-pane .show-hide
+{
+	background-color: #FEE944;
+	color: #2c2c2c;
+}
+
+.pane-title
+{
+	font-weight: bolder;
+	padding-left: 1em;
+}
+
+.data-pane
+{
+	background-color: transparent;
+	height: 55em;
+	padding: 0 3em 1em 3em;
+}
+
+.yellow-pane
+{
+	background-image: linear-gradient(to bottom, #FEB914 0%, #FEE944 100%);
+	color: #2c2c2c;
+	/*
+	background-color: #006247;
+	background-image: linear-gradient(to bottom, #006247 0%, #208267 100%);
+	color: #FFFFFF;
+	*/
+}
+
+.green-pane
+{
+	background-image: linear-gradient(to bottom, #006247 0%, #208267 100%);
+	color: #FFFFFF;
+}
+
+#county-county table
+{
+	margin-left: 24px;
+	/*
+	border: 1px solid #2c2c2c;
+	width: 90%;
+	border-width: 2px 2px 0 2px;
+	border-style: solid;
+	border-color: grey;
+	border-left: 2px solid grey;
+	border-right: 2px solid grey;
+	border-top: 2px solid grey;
+	*/
+	border: 2px solid grey;
+	width: 960px;
+	height: 120px;
+	background: #AFDEFB;
+}
+
+#county-county td
+{
+	padding: 5px;
+	font-style: bold;
+	font-size: 110%;
+	/* border: 1px solid red; */
+}
+
+#county-county td button.county1-color
+{
+	background-color: #365697;
+	width:  90px;
+	height: 18px;
+	border: 1px solid transparent;
+}
+
+#county-county td button.county2-color
+{
+	background-color: #ED416F;
+	width:  90px;
+	height: 18px;
+	border: 1px solid transparent;
+}
+
+#county-county td select
+{
+	padding-left: 0;
+	width: 20em;
+}
+
+#svg-panel
+{
+	width: 960px;
+	height: 720px;
+	margin-left: 24px;
+	border-left: 2px solid grey;
+	border-right: 2px solid grey;
+	border-bottom: 2px solid grey;
+}
+
+#svg-panel svg
+{
+	margin: 0;
+	padding: 0;
+	float: left;
+	font-size: 12px;
+	font-style: "Lucida Console";
+	background: -webkit-radial-gradient(60% 55%, farthest-corner, #FFFFFF, #AFDEFB); /* Safari 5.1 to 6.0 */
+	background: -o-radial-gradient(60% 55%, farthest-corner, #2f4645, black);  /* For Opera 11.6 to 12.0 */
+	background: -moz-radial-gradient(60% 55%, farthest-corner, #FFFFFF, #9FCEEB); /* For Firefox 3.6 to 15 */
+	background: radial-gradient(60% 55%, farthest-side, #2f4645, black);
+}
+
+#svg-panel svg .axis
+{
+	height: 100%;
+	/* transform: scaleY(5); */
+}
+
+#svg-panel svg .axis path,
+#svg-panel svg .axis line
+{
+	fill: none;
+	stroke: #2c2c2c;
+	stroke-width: 1;
+	shape-rendering: crispEdges;
+}
+
+#svg-panel svg .axis text
+{
+	font-family: sans-serif;
+	font-size: 11px;
+}
+
+#health-care1
+{
+	/* background-color: #2E0B70; */
+	background-image: linear-gradient(to bottom, #0041BF 0%, #2061DF 100%);
+	color: #FFFFFF;
+}
+
+#education1
+{
+	/* background-color: #FEE210; */
+	/* background-image: linear-gradient(to bottom, #E58B13 0%, #F59B23 100%); */
+	background-image: linear-gradient(to bottom, #F5AB23 0%, #F5BB43 100%);
+	color: black;
+}
+
+#weather1
+{
+	background-color: #2E0B70;
+	color: #FFFFFF;
+}
+
